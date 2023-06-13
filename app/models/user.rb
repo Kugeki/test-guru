@@ -2,6 +2,6 @@ class User < ApplicationRecord
   has_many :attempts
 
   def tests_with_level(level)
-    Attempt.where(user: self).joins(:test).where(tests: { level: }).map(&:test).uniq
+    Test.where(id: Attempt.where(user: self).map(&:test_id).uniq, level:)
   end
 end
