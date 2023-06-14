@@ -20,7 +20,7 @@ categories = Category.create!([
                                 { title: SYSTEM_DESIGN_CATEGORY_NAME },
                               ])
 
-http_test = Test.create!(title: "Коды HTTP запросов", level: 1, category: categories.find { |category| category.title == HTTP_CATEGORY_NAME })
+http_test = Test.create!(title: "Коды HTTP запросов", level: 1, category: categories[2])
 http_request_question = Question.create!(body: "Какой код ответа у успешного запроса?", test: http_test)
 
 Answer.create!(body: "403", question: http_request_question, correct: false)
