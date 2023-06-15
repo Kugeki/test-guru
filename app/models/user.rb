@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :attempts
+  has_many :authored_tests, class_name: "Test", foreign_key: "author_id"
 
   def tests_with_level(level)
     Test.joins(:attempts).where(attempts: { user: self }, level:)

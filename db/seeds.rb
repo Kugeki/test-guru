@@ -28,11 +28,15 @@ Answer.create!(body: "200", question: http_request_question)
 Answer.create!(body: "404", question: http_request_question, correct: false)
 Answer.create!(body: "503", question: http_request_question, correct: false)
 
-10.times { |n| Test.create!(title: "Test#{n}", level: rand(0..3), category: categories.sample) }
+
+users = %w[john alex elon].map do |name|
+  User.create!({ nickname: name })
+end
+
+10.times { |n| Test.create!(title: "Test#{n}", level: rand(0..3), category: categories.sample, author: users.sample) }
 
 # Users and attempts creation
 tests = Test.all
-%w[john alex elon].each do |name|
-  user = User.create!({ nickname: name })
-  rand(10).times { |n| Attempt.create!(user:, test: tests.sample, in_progress: [false, true].sample) }
+users.each do |user|
+  rand(5..10).times { |_| Attempt.create!(user:, test: tests.sample, in_progress: [false, true].sample) }
 end
