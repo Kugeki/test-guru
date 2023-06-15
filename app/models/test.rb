@@ -1,6 +1,7 @@
 class Test < ApplicationRecord
   belongs_to :category
   belongs_to :author, class_name: "User", optional: true
+  has_many :questions
 
   has_many :attempts
   has_many :attempted_users, through: :attempts, source: :user
