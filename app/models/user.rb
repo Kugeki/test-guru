@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :attempted_tests, through: :attempts, source: :test
 
   validates :nickname, presence: true
+  validates :email, presence: true
 
   def tests_with_level(level)
     Test.joins(:attempts).where(attempts: { user: self }, level:)

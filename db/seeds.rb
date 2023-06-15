@@ -31,7 +31,7 @@ http_request_question.save!
 
 
 users = %w[john alex elon].map do |name|
-  User.create!({ nickname: name })
+  User.create!({ nickname: name, email: "example@example.com" })
 end
 
 10.times { |n| Test.create!(title: "Test#{n}", level: rand(0..3), category: categories.sample, author: users.sample) }
