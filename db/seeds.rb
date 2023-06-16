@@ -22,12 +22,11 @@ categories = Category.create!([
 
 http_test = Test.create!(title: "Коды HTTP запросов", level: 1, category: categories[2])
 
-http_request_question = Question.new(body: "Какой код ответа у успешного запроса?", test: http_test)
-http_request_question.answers << Answer.new(body: "403", correct: false)
-http_request_question.answers << Answer.new(body: "200")
-http_request_question.answers << Answer.new(body: "404", correct: false)
-http_request_question.answers << Answer.new(body: "503", correct: false)
-http_request_question.save!
+http_request_question = Question.create!(body: "Какой код ответа у успешного запроса?", test: http_test)
+http_request_question.answers.create!(body: "403", correct: false)
+http_request_question.answers.create!(body: "200")
+http_request_question.answers.create!(body: "404", correct: false)
+http_request_question.answers.create!(body: "503", correct: false)
 
 
 users = %w[john alex elon].map do |name|
