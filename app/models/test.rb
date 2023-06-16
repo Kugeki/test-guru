@@ -13,11 +13,11 @@ class Test < ApplicationRecord
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..) }
 
-  scope :with_category, ->(title) { joins(:category).where(category: { title: }).order(title: :desc) }
+  scope :with_category, ->(title) { joins(:category).where(category: { title: }) }
 
   class << self
     def with_category_titles(title)
-      with_category(title).pluck(:title)
+      with_category(title).order(title: :desc).pluck(:title)
     end
   end
 end
